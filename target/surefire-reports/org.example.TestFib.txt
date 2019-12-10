@@ -1,0 +1,44 @@
+-------------------------------------------------------------------------------
+Test set: org.example.TestFib
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 321.422 sec <<< FAILURE!
+testFib(org.example.TestFib)  Time elapsed: 0.041 sec  <<< FAILURE!
+java.lang.IllegalArgumentException: Мы не считаем значения меньше 0 или больше 50!
+	at org.example.FibCalc.calc(FibCalc.java:17)
+	at org.example.TestFib.testFib(TestFib.java:36)
+
+testFib(org.example.TestFib)  Time elapsed: 0.044 sec  <<< FAILURE!
+java.lang.IllegalArgumentException: Мы не считаем значения меньше 0 или больше 50!
+	at org.example.FibCalc.calc(FibCalc.java:17)
+	at org.example.TestFib.testFib(TestFib.java:36)
+
+testFib(org.example.TestFib)  Time elapsed: 0.059 sec  <<< FAILURE!
+org.testng.internal.thread.ThreadTimeoutException: Method org.example.TestFib.testFib() didn't finish within the time-out 40
+	at org.testng.internal.MethodInvocationHelper.invokeWithTimeoutWithNoExecutor(MethodInvocationHelper.java:321)
+	at org.testng.internal.MethodInvocationHelper.invokeWithTimeout(MethodInvocationHelper.java:279)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:590)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:172)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:77)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:15)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+testFib(org.example.TestFib)  Time elapsed: 317.785 sec  <<< FAILURE!
+org.testng.internal.thread.ThreadTimeoutException: Method org.example.TestFib.testFib() didn't finish within the time-out 40
+	at org.testng.internal.MethodInvocationHelper.invokeWithTimeoutWithNoExecutor(MethodInvocationHelper.java:321)
+	at org.testng.internal.MethodInvocationHelper.invokeWithTimeout(MethodInvocationHelper.java:279)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:590)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:172)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:77)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:15)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+

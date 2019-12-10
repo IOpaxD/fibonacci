@@ -25,8 +25,5 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-Будет удалено target/classes/log4j2.xml
 Будет удалено target/generated-sources/
 Будет удалено target/generated-test-sources/
-Будет удалено target/maven-status/
-Будет удалено target/surefire-reports/

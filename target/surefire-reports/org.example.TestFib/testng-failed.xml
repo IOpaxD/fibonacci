@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite verbose="0" name="Failed suite [org.example.TestFib]">
+  <test thread-count="5" verbose="0" name="Command line test(failed)">
+    <classes>
+      <class name="org.example.TestFib">
+        <methods>
+          <include name="testFib" invocation-numbers="5 4 2 3"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- org.example.TestFib -->
+    </classes>
+  </test> <!-- Command line test(failed) -->
+</suite> <!-- Failed suite [org.example.TestFib] -->
