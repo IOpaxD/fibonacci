@@ -4,19 +4,42 @@ package org.example;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.math.BigInteger;
+
 public class FibCalc {
     private Logger log = LogManager.getLogger();
+    public final static BigInteger[][] ZERO = {{BigInteger.ONE, BigInteger.ZERO}, {BigInteger.ZERO, BigInteger.ONE}};
+    public final static BigInteger[][] ONE = {{BigInteger.ZERO, BigInteger.ONE}, {BigInteger.ONE, BigInteger.ONE}};
 
-    public long calc(long i) {
-//        log.trace("Считаем число Фибоначчи: {}", i);
-/*        try {
-            Thread.sleep(50);
-        } catch (InterruptedException e) {
-            log.error(e);
-        }*/
-        if (i < 0 || i > 50) throw new IllegalArgumentException("Мы не считаем значения меньше 0 или больше 50!");
-        if (i == 0) return 0;
-        if (i == 1) return 1;
-        return calc(i - 1) + calc(i - 2);
+    public static BigInteger[][] mul(BigInteger[][] a, BigInteger[][] b) {
+        return new BigInteger[][]{
+                {a[0][0].multiply(b[0][0]).add(a[0][1].multiply(b[1][0])), a[0][0].multiply(b[0][1]).add(a[0][1].multiply(b[1][1]))},
+                {a[1][0].multiply(b[0][0]).add(a[1][1].multiply(b[1][0])), a[1][0].multiply(b[0][1]).add(a[1][1].multiply(b[1][1]))}
+        };
+    }
+
+    public static BigInteger[][] pow(BigInteger[][] a, long l) {
+        if (l == 0) return ZERO;
+        if (l == 1) return a;
+        if (l == 2) return mul(a, a);
+        if (l % 2 == 1) return mul(ONE, pow(a, l - 1));
+        return pow(pow(a, l / 2), 2);
+    }
+
+    public String calc(String s) {
+        BigInteger b;
+        BigInteger i;
+        long l = Long.parseLong(s);
+        if (l < 0) {
+            l = -(l);
+            if (l % 2== 0) {
+                b = pow(ONE, l)[0][1];
+                i = b.multiply(BigInteger.valueOf(-1));
+                return  i.toString();
+            }
+        }
+        b = pow(ONE, l)[0][1];
+        return b.toString();
+
     }
 }

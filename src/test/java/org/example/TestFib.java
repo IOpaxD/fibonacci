@@ -7,6 +7,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.math.BigInteger;
+
 public class TestFib {
     private Logger log = LogManager.getLogger();
     private FibCalc fibCalc;
@@ -14,37 +16,25 @@ public class TestFib {
     @DataProvider(parallel = true)
     public static Object[][] data() {
         return new Object[][]{
-                {0, 0},
-                {1, 1},
-                {10, 55},
-                {50, 12586269025L},
-                {-3, 2},
-                {-10, -55},
+                {"0", "0"},
+                {"1", "1"},
+                {"10", "55"},
+                {"50", "12586269025"},
+                {"-3", "2"},
+                {"-10", "-55"}
         };
     }
 
-//    @DataProvider
-//    public static Object[][] negative() {
-//        return new Object[][]{
-//                {-1},
-//                {51}
-//        };
-//    }
-
     @Test(dataProvider = "data", timeOut = 40)
-    public void testFib(long n, long exp) {
-        long calc = fibCalc.calc(n);
+    public void testFib(String n, String exp) {
+        String calc = fibCalc.calc(n);
         log.info("Получено число {}", calc);
         Assert.assertEquals(calc, exp, "Неправильный ответ");
+
     }
 
     @BeforeClass
     public void setUp() {
         fibCalc = new FibCalc();
     }
-
-//    @Test(expectedExceptions = IllegalArgumentException.class, dataProvider = "negative")
-//    public void expectExceptionWhenNegative(long n) {
-//        fibCalc.calc(n);
-//    }
 }
