@@ -25,7 +25,7 @@ public class TestFib {
         };
     }
 
-    @Test(dataProvider = "data", timeOut = 40000)
+    @Test(dataProvider = "data", timeOut = 40)
     public void testFib(String n, String exp) {
         String calc = fibCalc.calc(n);
         log.info("Получено число {}", calc);
