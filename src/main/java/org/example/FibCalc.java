@@ -10,26 +10,25 @@ import java.io.InputStreamReader;
 import java.math.BigInteger;
 
 public class FibCalc {
+    Logger log = LogManager.getLogger();
+
 
     public static void main(String[] args) throws IOException {
         FibCalc fibCalc = new FibCalc();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Для выхода введите любую букву");
-        int i;
         while (true) {
             System.out.print("Введите число:  ");
             try {
-                i = Integer.parseInt(reader.readLine());
+                System.out.println(fibCalc.calc(reader.readLine()));
             } catch (NumberFormatException s) {
-                System.out.println("Выход");
+                System.out.println("Выход\n" + s);
                 break;
             }
-            System.out.println(fibCalc.calc(String.valueOf(i)));
         }
         reader.close();
     }
 
-    private Logger log = LogManager.getLogger();
     public final static BigInteger[][] ZERO = {{BigInteger.ONE, BigInteger.ZERO}, {BigInteger.ZERO, BigInteger.ONE}};
     public final static BigInteger[][] ONE = {{BigInteger.ZERO, BigInteger.ONE}, {BigInteger.ONE, BigInteger.ONE}};
 
@@ -40,7 +39,7 @@ public class FibCalc {
         };
     }
 
-    public static BigInteger[][] pow(BigInteger[][] a, long l) {
+    public BigInteger[][] pow(BigInteger[][] a, long l) {
         if (l == 0) return ZERO;
         if (l == 1) return a;
         if (l == 2) return mul(a, a);
@@ -49,18 +48,19 @@ public class FibCalc {
     }
 
     public String calc(String s) {
-        BigInteger b;
-        BigInteger i;
+        BigInteger bigOne;
+        BigInteger bigTwo;
+
         long l = Long.parseLong(s);
         if (l < 0) {
             l = -(l);
             if (l % 2 == 0) {
-                b = pow(ONE, l)[0][1];
-                i = b.multiply(BigInteger.valueOf(-1));
-                return i.toString();
+                bigOne = pow(ONE, l)[0][1];
+                bigTwo = bigOne.multiply(BigInteger.valueOf(-1));
+                return bigTwo.toString();
             }
         }
-        b = pow(ONE, l)[0][1];
-        return b.toString();
+        bigOne = pow(ONE, l)[0][1];
+        return bigOne.toString();
     }
 }
