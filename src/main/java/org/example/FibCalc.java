@@ -11,7 +11,7 @@ import java.math.BigInteger;
 
 public class FibCalc {
     Logger log = LogManager.getLogger();
-
+    static int count = 1;
 
     public static void main(String[] args) throws IOException {
         FibCalc fibCalc = new FibCalc();
@@ -23,6 +23,7 @@ public class FibCalc {
             try {
                 i = Integer.parseInt(reader.readLine());
                 System.out.print("\nВведите число для вычисления:  ");
+                count = 1;
                 if (i == 1)
                     System.out.printf("\nОтвет: %s", fibCalc.cycle(reader.readLine()));
                 else if (i == 2)
@@ -48,6 +49,8 @@ public class FibCalc {
     }
 
     public BigInteger[][] pow(BigInteger[][] a, long l) {
+        System.out.printf("Проход: %d\n", count);
+        count++;
         if (l == 0) return ZERO;
         if (l == 1) return a;
         if (l == 2) return mul(a, a);
@@ -58,7 +61,6 @@ public class FibCalc {
     public String matrix(String s) {
         BigInteger bigOne;
         BigInteger bigTwo;
-
         long l = Long.parseLong(s);
         if (l < 0) {
             l = -(l);
@@ -82,6 +84,8 @@ public class FibCalc {
             l = -(l);
             l2 = l;
         }
+        if (l > 92)
+            return "Превышен допустимый размер long";
         if (l == 0)
             return "0";
 
@@ -89,6 +93,8 @@ public class FibCalc {
             long next = a + b;
             a = b;
             b = next;
+            System.out.printf("Проход: %d\n", count);
+            count++;
         }
         if (l2 % 2 == 0)
             return String.valueOf(-(b));
@@ -97,6 +103,8 @@ public class FibCalc {
     }
 
     public long recursion(long n) {
+        System.out.printf("Проход: %d\n", count);
+        count++;
         long l2 = 1;
         if (n < 0) {
             n = -(n);
@@ -110,6 +118,7 @@ public class FibCalc {
             return -(recursion(n - 1) + recursion(n - 2));
         else
             return recursion(n - 1) + recursion(n - 2);
+
     }
 }
 
