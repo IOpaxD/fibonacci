@@ -13,7 +13,7 @@ public class TestFib {
     private Logger log = LogManager.getLogger();
     private FibCalc fibCalc;
 
-    @DataProvider(parallel = true)
+    @DataProvider(parallel = false)
     public static Object[][] data() {
         return new Object[][]{
                 {"0", "0"},
@@ -25,11 +25,18 @@ public class TestFib {
         };
     }
 
-    @Test(dataProvider = "data", timeOut = 40)
+    @Test(dataProvider = "data")
     public void testFib(String n, String exp) {
-        String calc = fibCalc.calc(n);
-        log.info("Получено число {}", calc);
-        Assert.assertEquals(calc, exp, "Неправильный ответ");
+        String matrix = fibCalc.matrix(n);
+        log.info("Получено число из матрицы {}", matrix);
+        String cycle = fibCalc.cycle(n);
+        log.info("Получено число из цикла {}", cycle);
+        long recursion = fibCalc.recursion(Long.parseLong(n));
+        log.info("Получено число из рекурсии {}", recursion);
+
+        Assert.assertEquals(cycle, exp, "Неправильный ответ из цикла");
+        Assert.assertEquals(matrix,exp, "Неправильный ответ из матрицы");
+        Assert.assertEquals(recursion,Long.parseLong(exp), "Неправильный ответ из рекурсии");
 
     }
 

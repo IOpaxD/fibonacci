@@ -24,11 +24,11 @@ public class FibCalc {
                 i = Integer.parseInt(reader.readLine());
                 System.out.print("\nВведите число для вычисления:  ");
                 if (i == 1)
-                    System.out.printf("\nОтвет: %s", fibCalc.calc2(reader.readLine()));
+                    System.out.printf("\nОтвет: %s", fibCalc.cycle(reader.readLine()));
                 else if (i == 2)
-                    System.out.printf("\nОтвет: %s", fibCalc.calc(reader.readLine()));
+                    System.out.printf("\nОтвет: %s", fibCalc.matrix(reader.readLine()));
                 else if (i == 3)
-                    System.out.printf("\nОтвет: %s", fibCalc.calc3(Long.parseLong(reader.readLine())));
+                    System.out.printf("\nОтвет: %s", fibCalc.recursion(Long.parseLong(reader.readLine())));
             } catch (NumberFormatException s) {
                 System.out.println("Выход\n" + s);
                 break;
@@ -55,7 +55,7 @@ public class FibCalc {
         return pow(pow(a, l / 2), 2);
     }
 
-    public String calc(String s) {
+    public String matrix(String s) {
         BigInteger bigOne;
         BigInteger bigTwo;
 
@@ -72,7 +72,7 @@ public class FibCalc {
         return bigOne.toString();
     }
 
-    public String calc2(String s) {
+    public String cycle(String s) {
         long a = 0;
         long b = 1;
         long l2 = 1;
@@ -82,6 +82,8 @@ public class FibCalc {
             l = -(l);
             l2 = l;
         }
+        if (l == 0)
+            return "0";
 
         for (int i = 2; i <= l; ++i) {
             long next = a + b;
@@ -94,7 +96,7 @@ public class FibCalc {
             return String.valueOf(b);
     }
 
-    public long calc3(long n) {
+    public long recursion(long n) {
         long l2 = 1;
         if (n < 0) {
             n = -(n);
@@ -105,9 +107,9 @@ public class FibCalc {
         else if (n == 1)
             return 1;
         else if (l2 % 2 == 0)
-            return -(calc3(n - 1) + calc3(n - 2));
+            return -(recursion(n - 1) + recursion(n - 2));
         else
-            return calc3(n - 1) + calc3(n - 2);
+            return recursion(n - 1) + recursion(n - 2);
     }
 }
 
