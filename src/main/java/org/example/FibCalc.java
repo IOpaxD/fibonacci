@@ -16,11 +16,19 @@ public class FibCalc {
     public static void main(String[] args) throws IOException {
         FibCalc fibCalc = new FibCalc();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Для выхода введите любую букву");
+        int i;
+        System.out.print("Для выхода введите любую букву...");
         while (true) {
-            System.out.print("Введите число:  ");
+            System.out.printf("\n\nВыберите способ вычисленя: \n(%d)Цикл (%d)Матрица (%d)Рекурсия\n Введите число:  ", 1, 2, 3);
             try {
-                System.out.println(fibCalc.calc(reader.readLine()));
+                i = Integer.parseInt(reader.readLine());
+                System.out.print("\nВведите число для вычисления:  ");
+                if (i == 1)
+                    System.out.printf("\nОтвет: %s", fibCalc.calc2(reader.readLine()));
+                else if (i == 2)
+                    System.out.printf("\nОтвет: %s", fibCalc.calc(reader.readLine()));
+                else if (i == 3)
+                    System.out.printf("\nОтвет: %s", fibCalc.calc3(Long.parseLong(reader.readLine())));
             } catch (NumberFormatException s) {
                 System.out.println("Выход\n" + s);
                 break;
@@ -63,4 +71,44 @@ public class FibCalc {
         bigOne = pow(ONE, l)[0][1];
         return bigOne.toString();
     }
+
+    public String calc2(String s) {
+        long a = 0;
+        long b = 1;
+        long l2 = 1;
+        long l = Long.parseLong(s);
+
+        if (l < 0) {
+            l = -(l);
+            l2 = l;
+        }
+
+        for (int i = 2; i <= l; ++i) {
+            long next = a + b;
+            a = b;
+            b = next;
+        }
+        if (l2 % 2 == 0)
+            return String.valueOf(-(b));
+        else
+            return String.valueOf(b);
+    }
+
+    public long calc3(long n) {
+        long l2 = 1;
+        if (n < 0) {
+            n = -(n);
+            l2 = n;
+        }
+        if (n == 0)
+            return 0;
+        else if (n == 1)
+            return 1;
+        else if (l2 % 2 == 0)
+            return -(calc3(n - 1) + calc3(n - 2));
+        else
+            return calc3(n - 1) + calc3(n - 2);
+    }
 }
+
+
